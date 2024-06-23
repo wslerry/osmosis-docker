@@ -1,0 +1,8 @@
+Dockerfile.backup
+*/*.backup
+osm/data/*
+output/*
+plugins
+scripts/*.bat
+scripts/*.backup
+.env

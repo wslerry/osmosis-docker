@@ -1,0 +1,6 @@
+/README.md
+/Dockerfile
+/Dockerfile*
+/docker-compose.yml
+/*.tar
+./plugins/*.jar
