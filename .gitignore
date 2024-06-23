@@ -5,3 +5,5 @@ output/*
 plugins
 scripts/*.backup
 .env
+*.sh
+
