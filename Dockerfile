@@ -21,6 +21,10 @@ RUN set -x \
         osmium-tool \
         tzdata \
         locales \
+    && echo $TZ > /etc/timezone \
+    && ln -sf /usr/share/zoneinfo/$TZ /etc/localtime \
+    && dpkg-reconfigure -f noninteractive tzdata \
+    && sed -i "s/# $LANG UTF-8/$LANG UTF-8/" /etc/locale.gen \
     && locale-gen $LANG && update-locale LANG=$LANG \
     && apt-get clean autoclean \
     && apt-get autoremove --yes \
@@ -33,6 +37,11 @@ RUN set -x \
     && rm /opt/osmosis.tar \
     && chmod 0755 /opt/osmosis/bin/osmosis \
     && ln -s /opt/osmosis/bin/osmosis /usr/local/bin/osmosis
+
+# Add Tini
+ENV TINI_VERSION v0.19.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
+RUN chmod +x /tini
 
 RUN mkdir -p /data/ && mkdir -p /opt/osm
 
@@ -48,5 +57,8 @@ RUN set -x \
 
 COPY ./scripts/entrypoint.sh .
 
+
+ENTRYPOINT ["/tini", "--"]
+
 # Define the default command to run when the container starts
-ENTRYPOINT ["./entrypoint.sh", "-a"]
+CMD ["./entrypoint.sh", "-a"]
