@@ -6,4 +6,4 @@ plugins
 scripts/*.backup
 .env
 *.sh
-
+*.bat
