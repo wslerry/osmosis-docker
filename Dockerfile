@@ -1,12 +1,12 @@
 FROM eclipse-temurin:17.0.7_7-jdk
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ="Asia/Kuching"
-ENV LANG C.UTF-8
-ENV LC_ALL C.UTF-8
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
 
 # Set the Osmosis version and download URL as build arguments
 ARG OSMOSIS_VERSION='0.49.2'
-ENV OSMOSIS_VERSION $OSMOSIS_VERSION
+ENV OSMOSIS_VERSION=$OSMOSIS_VERSION
 
 # Set the working directory
 WORKDIR /opt/osmosis
@@ -39,7 +39,7 @@ RUN set -x \
     && ln -s /opt/osmosis/bin/osmosis /usr/local/bin/osmosis
 
 # Add Tini
-ENV TINI_VERSION v0.19.0
+ENV TINI_VERSION=v0.19.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 RUN chmod +x /tini
 
@@ -58,7 +58,7 @@ RUN set -x \
 COPY ./scripts/entrypoint.sh .
 
 
-ENTRYPOINT ["/tini", "--"]
+ENTRYPOINT ["/tini", "--", "/opt/osm/entrypoint.sh"]
 
 # Define the default command to run when the container starts
-CMD ["./entrypoint.sh", "-a"]
+# CMD ["/opt/osm/entrypoint.sh", "-a"]

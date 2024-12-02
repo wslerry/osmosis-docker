@@ -27,15 +27,16 @@ docker run -it --entrypoint bash lerryws/osmosis
 ### Usage
 
 ```shell
-docker run -ti --rm -e OSM_SEA_FILE=sea.osm -e OSM_PBF_FILE=malaysia-singapore-brunei-latest.osm.pbf -v C:\Container_dev\osmosis_docker\osm\data:/data lerryws/osmosis
-```
+docker run -ti --rm -e OSM_SEA_FILE=sea.osm -e OSM_PBF_FILE=malaysia-singapore-brunei-latest.osm.pbf -v C:\Container_dev\osmosis_docker\osm\data:/data ghcr.io/wslerry/osmosis
 
 ```shell
-docker run -ti --rm -e JAVACMD_OPTIONS="-Xmx5g -Xms5g" -e OSM_SEA_FILE=sea.osm -e OSM_PBF_FILE=malaysia-singapore-brunei-latest.osm.pbf -v C:\Container_dev\osmosis_docker\osm\data:/data/input/ -v C:\Container_dev\osmosis_docker\output:/data/output/ lerryws/osmosis -a clip
+docker run -ti --rm -e JAVACMD_OPTIONS="-Xmx5g -Xms5g" -e OSM_SEA_FILE=sea.osm -e OSM_PBF_FILE=malaysia-singapore-brunei-latest.osm.pbf -v C:\Container_dev\osmosis_docker\osm\data:/data/input/ -v C:\Container_dev\osmosis_docker\output:/data/output/ ghcr.io/wslerry/osmosis -a clip
 
-docker run -ti --rm -e JAVACMD_OPTIONS="-Xmx5g -Xms5g" -e OSM_SEA_FILE=sea.osm -e OSM_PBF_FILE=malaysia-singapore-brunei-latest.osm.pbf -v C:\Container_dev\osmosis_docker\osm\data:/data/input/ -v C:\Container_dev\osmosis_docker\output:/data/output/ lerryws/osmosis -a merge
+docker run -ti --rm -e JAVACMD_OPTIONS="-Xmx5g -Xms5g" -e OSM_SEA_FILE=sea.osm -e OSM_PBF_FILE=malaysia-singapore-brunei-latest.osm.pbf -v C:\Container_dev\osmosis_docker\osm\data:/data/input/ -v C:\Container_dev\osmosis_docker\output:/data/output/ ghcr.io/wslerry/osmosis -a merge
 
-docker run -ti --rm -e JAVACMD_OPTIONS="-Xmx5g -Xms5g" -e OSM_SEA_FILE=sea.osm -e OSM_PBF_FILE=malaysia-singapore-brunei-latest.osm.pbf -v C:\Container_dev\osmosis_docker\osm\data:/data/input/ -v C:\Container_dev\osmosis_docker\output:/data/output/ lerryws/osmosis -a map
+docker run -ti --rm -e JAVACMD_OPTIONS="-Xmx5g -Xms5g" -e OSM_SEA_FILE=sea.osm -e OSM_PBF_FILE=malaysia-singapore-brunei-latest.osm.pbf -v C:\Container_dev\osmosis_docker\osm\data:/data/input/ -v C:\Container_dev\osmosis_docker\output:/data/output/ lghcr.io/wslerry/osmosis -a map
+
+docker run -ti --rm -e JAVACMD_OPTIONS="-Xmx5g -Xms5g" -e OSM_SEA_FILE=sea.osm -e OSM_PBF_FILE=malaysia-singapore-brunei-latest.osm.pbf -v C:\Container_dev\osmosis_docker\osm\data:/data/input/ -v C:\Container_dev\osmosis_docker\output:/data/output/ lghcr.io/wslerry/osmosis -a update
 ```
 
 **Check changeset**

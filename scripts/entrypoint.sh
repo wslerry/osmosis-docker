@@ -5,8 +5,22 @@ figlet -t "OSM To Mapforge"
 
 JAVACMD_OPTIONS="${JAVACMD_OPTIONS:=-Xmx1g -Xms1g}"
 
-: "${INPUT_DATA_DIR:=/data/input/}"
-: "${OUTPUT_DATA_DIR:=/data/output/}"
+: "${INPUT_DATA_DIR:=/data/input}"
+: "${OUTPUT_DATA_DIR:=/data/output}"
+
+# Ensure the input directory exists
+if [ ! -d "$INPUT_DATA_DIR" ]; then
+    echo "Creating input directory: $INPUT_DATA_DIR"
+    mkdir -p "$INPUT_DATA_DIR"
+fi
+
+# Ensure the output directory exists
+if [ ! -d "$OUTPUT_DATA_DIR" ]; then
+    echo "Creating output directory: $OUTPUT_DATA_DIR"
+    mkdir -p "$OUTPUT_DATA_DIR"
+fi
+
+
 : "${DEFAULT_DATASET:=${INPUT_DATA_DIR}/malaysia-singapore-brunei-latest.osm.pbf}"
 
 INPUT_DATASET=${INPUT_DATA_DIR}/${OSM_PBF_FILE}
@@ -18,10 +32,13 @@ MERGED_FILE_OSM="${OUTPUT_DATA_DIR}/merge.osm"
 MAPFORGE_FILE="${OUTPUT_DATA_DIR}/sarawak_mapforge.map"
 POI_FILE="${OUTPUT_DATA_DIR}/sarawak_poi_mapforge.poi"
 
+
 function checkosm() {
     if [ ! -f "$DEFAULT_DATASET" ]; then
         echo "Downloading OSM file..."
-        wget -O $DEFULT_DATASET "https://download.geofabrik.de/asia/malaysia-singapore-brunei-latest.osm.pbf"
+        echo "Download from https://download.geofabrik.de/asia/malaysia-singapore-brunei-latest.osm.pbf"
+        echo "Data save into ${DEFAULT_DATASET}"
+        wget -O "$DEFAULT_DATASET" "https://download.geofabrik.de/asia/malaysia-singapore-brunei-latest.osm.pbf"
     else
         echo "OSM file already exists."
     fi
